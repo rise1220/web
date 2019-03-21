@@ -1,12 +1,16 @@
 package com.example.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 
@@ -27,4 +31,9 @@ public class Member {
 	int id;
 	String email;
 	String password;
+	int status;
+	
+	@OneToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name="id", insertable = false)
+    private Orders order;
 }
